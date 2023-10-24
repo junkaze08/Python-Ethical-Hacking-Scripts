@@ -1,0 +1,9 @@
+// run this on Command Line for encoding ZIP file to PNG file
+
+copy /b moon.jpg + process.zip output.jpg
+
+// copy: Windows command to copy files
+// /b: treat files as binary
+// +: symbol to combine files
+// process.zip: source zip file to hide on jpg file
+// output.jpg: combined data from zip and jpg file to a new jpg file
