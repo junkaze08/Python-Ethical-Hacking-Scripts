@@ -4,7 +4,7 @@ This is a compilation of scripts that can encode and decode a file using Python.
 
 ## Disclaimer
 
-This project is provided for educational and informational purposes only. The author Junester Ursora II makes no representations or warranties of any kind concerning the software, express or implied, including, but not limited to, the warranties of merchantability, fitness for a particular purpose, and non-infringement. The author shall not be held responsible for any damages or liabilities arising from the use of the software.
+This project is provided for educational and informational purposes only. The author, Junester Ursora II, makes no representations or warranties of any kind concerning the software, express or implied, including, but not limited to, the warranties of merchantability, fitness for a particular purpose, and non-infringement. The author shall not be held responsible for any damages or liabilities arising from the use of the software.
 
 **Usage of this code is at your own risk.**
 
