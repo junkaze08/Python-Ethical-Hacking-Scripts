@@ -1,0 +1,52 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+Do you know how to move between directories and read files in the shell? Start the container, `ssh` to it, and then `ls` once connected to begin. Login via `ssh` as `ctf-player` with the password, `6dee9772`
+Additional details will be available after launching your challenge instance.
+
+Hint: Finding a cheatsheet for bash would be really helpful!
+
+1st. I am familiar with moving between directories since I am using Ubuntu and Kali Linux. First is to display the current list of files
+
+    ctf-player@pico-chall$ ls
+    1of3.flag.txt  instructions-to-2of3.txt
+
+I am trying to open the 1of3.flag.txt with nano which is the command-line text editor but it throws an error. I decided to use cat.
+
+    ctf-player@pico-chall$ cat 1of3.flag.txt
+    picoCTF{xxsh_
+
+So I am able to see the 33.3% of the flag! I will change directories to see the other flag. I know that I am in home, I will deescalate my directory using cd...
+
+    ctf-player@pico-chall$ ls
+    3of3.flag.txt  drop-in
+
+There you go, I've seen the other part of the flag. We also know that drop-in is a directory. I will use cat to see the part of the flag.
+
+    ctf-player@pico-chall$ cat 3of3.flag.txt
+    540e4e79}
+
+I will try to change directories again using cd ..
+
+    ctf-player@pico-chall$ ls
+    ctf-player
+
+So it appears that ctf-player is the user, I can validate that with whoami
+
+    ctf-player@pico-chall$ whoami
+    ctf-player
+
+Another change of directory will get me to the root directory, and it did not fail. I've seen the last part of the flag! Using cat to extract the string on txt.
+
+    ctf-player@pico-chall$ ls
+    2of3.flag.txt  boot  etc   instructions-to-3of3.txt  lib64  mnt  proc  run   srv  tmp  var
+    bin            dev   home  lib                       media  opt  root  sbin  sys  usr
+    
+    ctf-player@pico-chall$ cat 2of3.flag.txt
+    0ut_0f_\/\/4t3r_
+
+If I will combine the flag strings, this is the result.
+    The flag is: picoCTF{xxsh_0ut_0f_\/\/4t3r_540e4e79}
