@@ -24,4 +24,9 @@ Remember that SVG files are written in XML, I found a metadata of an XML and see
     <tspan xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" sodipodi:role="line" x="107.43014" y="132.11588" style="font-size:0.00352781px;line-height:1.25;fill:#ffffff;stroke-width:0.26458332;" id="tspan3752">c 3 d _ a a b 7 2 9 d d }</tspan>
 </text>
 
+or by using cat in Kali Linux
+
+$ cat drawing.flag.svg | grep "</tspan" | cut -d ">" -f2 | cut -d "<" -f1 | tr -d "\n" | tr -d " "
+
 The flag is: picoCTF{3nh4nc3d_aab729dd}
+
