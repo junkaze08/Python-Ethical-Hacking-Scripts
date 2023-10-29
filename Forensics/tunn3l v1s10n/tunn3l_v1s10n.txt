@@ -1,0 +1,75 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+We found this file. Recover the flag.
+
+Hints: Weird that it won't display right...
+
+1st. This is quite tricky since it is a file alone. I open it in a hex editor HxD and notices that the header is BM.
+So I assume that it is a BMP file and it is. Upon opening the file, I noticed that the header is wrong by indication.
+
+Offset (h) 
+00000000 0A 0B 0E 0F
+00000010 BA D0 BA D0
+
+I assume that it is literally bad, so I reference another BMP Image and change those values as
+
+Offset (h) 
+00000000 0A 0B 0E 0F
+00000010 36 00 28 00
+
+And it works, kind of. I want to know what controls the height and weight of the image inside the bitmap source code.
+So I use exiftool to know the meta information of the bmp tool
+
+$ exiftool tunn3l_v1s10n.bmp
+
+ExifTool Version Number         : 12.67
+File Name                       : tunn3l_v1s10n.bmp
+Directory                       : .
+File Size                       : 2.9 MB
+File Modification Date/Time     : 2023:10:29 09:30:07-04:00
+File Access Date/Time           : 2023:10:29 09:37:54-04:00
+File Inode Change Date/Time     : 2023:10:29 09:37:54-04:00
+File Permissions                : -rw-rw-rw-
+File Type                       : BMP
+File Type Extension             : bmp
+MIME Type                       : image/bmp
+BMP Version                     : Unknown (53434)
+Image Width                     : 1134
+Image Height                    : 306
+Planes                          : 1
+Bit Depth                       : 24
+Compression                     : None
+Image Length                    : 2893400
+Pixels Per Meter X              : 5669
+Pixels Per Meter Y              : 5669
+Num Colors                      : Use BitDepth
+Num Important Colors            : All
+Red Mask                        : 0x27171a23
+Green Mask                      : 0x20291b1e
+Blue Mask                       : 0x1e212a1d
+Alpha Mask                      : 0x311a1d26
+Color Space                     : Unknown (,5%()
+Rendering Intent                : Unknown (826103054)
+Image Size                      : 1134x306
+Megapixels                      : 0.347
+
+I noticed that the width is 1134 and the height is 306 but it is not in hex. In order to convert that values, I will use Python.
+
+$ python 
+>> hex(1134)
+'0x46e'
+>> hex(850)
+'0x352'
+
+Offset (h) 
+00000010 6E 04
+00000020 52 03
+
+The way it is read is in reverse, as you can see on the offset it is 6E04 and on conversion it is 46e same on the height.
+After saving, I checked the image and the flag is displayed! 
+
+The flag is: picoCTF{qu1t3_a_v13w_2020} 

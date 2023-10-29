@@ -1,0 +1,60 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+1st. Matryoshka dolls are a set of wooden dolls of decreasing size placed one inside another. What's the final one?
+
+In my perspective before solving this, Matryoshka dolls are dolls that have dolls inside. And the file is an image, I think this is Steganography.
+
+2nd. I assume that it has a file inside a file, so I use binwalk to find out what are inside the photo.
+
+$ binwalk -e dolls.jpg
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             PNG image, 594 x 1104, 8-bit/color RGBA, non-interlaced
+3226          0xC9A           TIFF image data, big-endian, offset of first image directory: 8
+272492        0x4286C         Zip archive data, at least v2.0 to extract, compressed size: 378954, uncompressed size: 383938, name: base_images/2_c.jpg
+651612        0x9F15C         End of Zip archive, footer length: 22
+
+3rd. My assumption is true. After using binwalk, there is a folder extracted with a picture of another Matryoshka doll and a zip with the same doll.
+
+I will repeat to run binwalk until flag is located.
+
+$ binwalk -e 2_c.jpg  
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             PNG image, 526 x 1106, 8-bit/color RGBA, non-interlaced
+3226          0xC9A           TIFF image data, big-endian, offset of first image directory: 8
+187707        0x2DD3B         Zip archive data, at least v2.0 to extract, compressed size: 196043, uncompressed size: 201445, name: base_images/3_c.jpg
+383805        0x5DB3D         End of Zip archive, footer length: 22
+383916        0x5DBAC         End of Zip archive, footer length: 22
+
+$ binwalk -e 3_c.jpg                                                                   
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             PNG image, 428 x 1104, 8-bit/color RGBA, non-interlaced
+3226          0xC9A           TIFF image data, big-endian, offset of first image directory: 8
+123606        0x1E2D6         Zip archive data, at least v2.0 to extract, compressed size: 77651, uncompressed size: 79807, name: base_images/4_c.jpg
+201423        0x312CF         End of Zip archive, footer length: 22
+
+$ binwalk -e 4_c.jpg 
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             PNG image, 320 x 768, 8-bit/color RGBA, non-interlaced
+3226          0xC9A           TIFF image data, big-endian, offset of first image directory: 8
+79578         0x136DA         Zip archive data, at least v2.0 to extract, compressed size: 63, uncompressed size: 81, name: flag.txt
+79785         0x137A9         End of Zip archive, footer length: 22
+
+3rd. At the fourth extraction, flag is located but the output is this p�i�c�o�C�T�F�{�b�f�6�a�c�f�8�7�8�d�c�b�d�7�5�2�f�4�7�2�1�e�4�1�b�1�b�1�b�6�6�b�}
+I can manually eyeball it and extract one by one but by using cat, it prints the content of a file onto a standard output.
+
+$ cat flag.txt
+
+The flag is: picoCTF{bf6acf878dcbd752f4721e41b1b1b66b} 
+

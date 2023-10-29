@@ -4,7 +4,7 @@
 
 #https://play.picoctf.org/users/pythons_junkaze
 
-We can simply use grep to find the flag inside the file
+1st. We can simply use grep to find the flag inside the file
 
 strings static | grep pico
 
