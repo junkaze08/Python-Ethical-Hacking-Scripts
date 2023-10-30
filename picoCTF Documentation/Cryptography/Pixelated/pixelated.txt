@@ -1,0 +1,28 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+I have these 2 images, can you make a flag out of them? scrambled1.png scrambled2.png
+
+Hints:
+    https://en.wikipedia.org/wiki/Visual_cryptography
+    Think of different ways you can "stack" images
+
+1st. I approach this using stegsolve. First I downloaded stegsolve and set as execution allowing it to run as a program.
+    
+    $ wget http://www.caesum.com/handbook/Stegsolve.jar -O stegsolve.jar
+    $ chmod +x stegsolve.jar
+    $ mkdir bin
+    $ mv stegsolve.jar bin/
+
+2nd. After installing, I run the program and import the scrambled photo (either of the two photo, it doesn't matter what to import first)
+    $ java -jar stegsolve.jar\~ 
+
+3rd. When stegsolve is running, click on Open under File and locate the first scrambled photo
+    //Click on Image Combiner under Analyse and locate the second scrambled photo
+    //Another pane will pop-up and click on the "< >" to pan on different modes of photo extraction
+    //It locates on ADD and ADD (R,G,B separate) and the flag is found!
+
+The flag is: picoCTF{d562333d}
