@@ -1,0 +1,28 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+Fix the syntax error in this Python script to print the flag.
+
+Hints:
+    Fix the syntax error in this Python script to print the flag.
+    To view the file in the webshell, do: $ nano fixme1.py
+    To exit nano, press Ctrl and x and follow the on-screen prompts.
+    To exit nano, press Ctrl and x and follow the on-screen prompts.
+
+1st. I opened the python file and already noticed the indentation is wrong.
+    
+    flag = str_xor(flag_enc, 'enkidu')
+        print('That is correct! Here\'s your flag: ' + flag)
+
+2nd. I fixed the indentation and run the python file and the flag is displayed!
+    
+    flag = str_xor(flag_enc, 'enkidu')
+    print('That is correct! Here\'s your flag: ' + flag)
+
+    python .\fixme1.py
+    That is correct! Here's your flag: picoCTF{1nd3nt1ty_cr1515_182342f7}
+
+

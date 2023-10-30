@@ -1,0 +1,31 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+Run the Python script and convert the given number from decimal to binary to get the flag.
+
+Hints:
+    Look up a decimal to binary number conversion app on the web or use your computer's calculator!
+    The str_xor function does not need to be reverse engineered for this challenge.
+    If you have Python on your computer, you can download the script normally and run it. Otherwise, use the wget command in the webshell.
+    To use wget in the webshell, first right click on the download link and select 'Copy Link' or 'Copy Link Address'
+    Type everything after the dollar sign in the webshell: $ wget , then paste the link after the space after wget and press enter. This will download the script for you in the webshell so you can run it!
+    Finally, to run the script, type everything after the dollar sign and then press enter: $ python3 convertme.py
+
+1st. I run first the python file and this is the output
+    python .\convertme.py
+    If 59 is in decimal base, what is it in binary base?
+    Answer: 
+
+2nd. I run a separate terminal of python to solve the conversion.
+    python
+    >>> bin(59)  
+    '0b111011'
+
+3rd. I answered 111011 and it displayed the output and the flag!
+    Answer: 111011
+    That is correct! Here's your flag: picoCTF{4ll_y0ur_b4535_762f748e}
+
+The flag is: picoCTF{4ll_y0ur_b4535_762f748e}

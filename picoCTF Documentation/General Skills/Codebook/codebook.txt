@@ -1,0 +1,17 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+Run the Python script code.py in the same directory as codebook.txt.
+
+Hints: 
+    On the webshell, use ls to see if both files are in the directory you are in
+    The str_xor function does not need to be reverse engineered for this challenge.
+
+1st. I make sure that the code.py and codebook.txt is on the same directory and run the python file. And displays the flag!
+    $ python3 code.py                       
+    picoCTF{c0d3b00k_455157_197a982c}
+
+The flag is: picoCTF{c0d3b00k_455157_197a982c}
