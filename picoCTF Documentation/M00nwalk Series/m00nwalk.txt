@@ -1,0 +1,35 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+Decode this message from the moon.
+
+Hints:
+    How did pictures from the moon landing get sent back to Earth?
+    What is the CMU mascot?, that might help select a RX option
+
+1st. Since it is a .wav file which is an audio, I think it is a Audio Steganography. This is how I approach this problem.
+    
+    //Installing qsstv. SSTV is is a picture transmission method, used mainly by amateur radio operators, to transmit and receive static pictures via radio in monochrome or color.
+    $ sudo apt-get install qsstv
+    
+    //After installing, I run qsstv in the terminal and import the .wav file but it says "Invalid Header Format"
+    //So I install audacity. Audacity is a free, easy-to-use, multi-track audio editor and recorder for Windows, Mac OS X, GNU/Linux and other operating systems.
+    $ sudo apt-get install audacity
+
+    //Opening audacity and importing the .wav file and export it again as .wav file.
+
+2nd. After exporting the new .wav file, opening qsstv and importing the new .wav file.
+    *Note: qsstv application must be configured first*
+        //Options -> Configuration -> Sound 
+            //Sound Input change it to "From file"
+    //Check the Auto Slant on Receive under SSTV
+
+3rd. After importing, it will processs the .wav file to a png file.
+    //Click the SD Card Icon under Receive and save it in your chosen directory and the flag is discovered!
+
+The flag is: picoCTF{beep_boop_im_in_space}
+
+

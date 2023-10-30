@@ -1,0 +1,32 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+Revisit the last transmission. We think this transmission contains a hidden message. There are also some clues clue 1, clue 2, clue 3.
+
+Hints:
+    Use the clues to extract the another flag from the .wav file
+
+1st. Revisit the first m00nwalk on how I convert .wav file to a png file using QSSTV.
+    //Convert the clue1.wav clue2.wav2 clue3.wav
+    Results:
+        clue1 = Password
+                hidden_stegosaurus
+        clue2 = The quieter you are
+                the more you can
+                    HEAR
+        clue3 = Alan Eliasen the Future Boy
+
+2nd. I thought that this is an Image Steganography but I use hexdump and HxC, there is no irregularities.
+    //When I searched on Google who is Alan Eliasen, he is a programmer and have Steganography documentation.
+    //Right below ther is steghide, It is a steganography program that is able to hide data in various kinds of image and audio-files.
+    //Now I wonder the clue1 is stegosaurus is associated with steghide so I run steghide on every clues but it doesn't have any signs of the flag.
+    $ sudo apt-get install steghide
+
+3rd. By trying to use steghide on the message.wav, there is a .txt file and when I open the .txt file, there is the flag, hiding in plain sight.
+    steghide extract -f -p "hidden_stegosaurus" -sf message.wav           
+    wrote extracted data to "steganopayload12154.txt".
+
+The flag is: picoCTF{the_answer_lies_hidden_in_plain_sight}
