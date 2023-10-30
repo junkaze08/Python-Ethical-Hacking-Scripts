@@ -1,0 +1,54 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+We found a brand new type of encryption, can you break the secret code? (Wrap with picoCTF{}) apbopjbobpnjpjnmnnnmnlnbamnpnononpnaaaamnlnkapndnkncamnpapncnbannaapncndnlnpna new_caesar.py
+
+Hints:
+    How does the cipher work if the alphabet isn't 26 letters?
+    Even though the letters are split up, the same paradigms still apply
+
+1st. After opening the python file, i noticed that in order to decode, I need to unshift first.
+    //Since the key is one letter in the first 16 lowercase alphabet 'a to p'
+    //I also think this is a Vignere Cipher but encrypted more.
+
+2nd. I make a function that decodes a message that has been encoded in base16
+    def b16_decode(cipher):
+        return ''.join([chr(int(f"{ALPHABET.index(cipher[i]):04b}{ALPHABET.index(cipher[i+1]):04b}", 2)) for i in range(0, len(cipher), 2)])
+
+    I also make a function that performs a simple Caesar cipher decryption that is shift 'c' backward in the 'ALPHABET' string by the same amount as the character 'k'
+    def unshift(c, k):
+        return ALPHABET[(ord(c) - ord(k)) % len(ALPHABET)]
+
+3rd. The output is vague but I noticed an obscure string which is et_tu?_23217b54456fb10e908b5e87c6e89156.
+    //It turns out, it is the actual flag without the picoCTF wrap.
+    Ð☼ÒÓÛßÐÜÝÜÛÑ♀ßÞÞßÐ♀ÛÚ☼ÓÚÒ♀ß☼ÒÑ
+    ♫ÈèËÌËÊÀûÎÍÍÎÏÿûÊÉþÂÉÁûÎþÁÀüÏþÁÂÊÎÏ    
+    íü×üý·×º»º¹¿ê½¼¼½¾îê¹¸í±¸°ê½í°¿ë¾í°±¹½¾
+    ÜëÆëì¦Æ©ª©¨®Ù¬««¬­ÝÙ¨§Ü §¯Ù¬Ü¯®Ú­Ü¯ ¨¬­
+    ËÚµÚÛµÌÈËË        
+    ºÉ¤ÉÊ
+        ¤·»·
+    º
+    ·º¸º
+    ©¸¸¹svwvu{¦yxxyzª¦ut©}t|¦y©|{§z©|}uyz
+    §¨befedjhgghidchiqQqTUTSY
+                            WVVWX
+                                SR[RZ
+                                    WZY
+    XZ[SWX
+    v
+    `
+    @`CDCBHsFEEFGwsBAvJAIsFvIHtGvIJBFG
+    et_tu?_23217b54456fb10e908b5e87c6e89156
+    TcNcd.N!"! &Q$##$%UQ /T(/'Q$T'&R%T'( $%
+    CR=RS↔=►◄►▼§@‼↕↕‼¶D@▼▲C↨▲▬@‼C▬§A¶C▬↨▼‼¶
+    ♣?☻2♣♦0♥2♣♠♫☻♥☺☻♥3?♫
+    !01ûÿþýó.ñððñò".ýü!õüô.ñ!ôó/ò!ôõýñò    
+    ►/
+    / ê
+    íîíìâ↔àïïàá◄↔ìë►äëã↔à►ãâ▲á►ãäìàá
+
+The flag is: picoCTF{et_tu?_23217b54456fb10e908b5e87c6e89156}
