@@ -1,0 +1,33 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+Using netcat (nc) is going to be pretty important. Can you connect to jupiter.challenges.picoctf.org at port 41120 to get the flag?
+
+Hints: nc tutorial
+
+1st. Since I am using netcat, this is how my approach is.
+    I ping the jupiter.challenges.picoctf.org because I need the IP Address
+    
+    $ ping jupiter.challenges.picoctf.org       
+    PING jupiter.challenges.picoctf.org (3.131.60.8) 56(84) bytes of data.
+
+2nd. Now that I know the IP Address, i can run the nc command with the IP address and the port
+    
+    $ nc -v 3.131.60.8 41120
+    ec2-3-131-60-8.us-east-2.compute.amazonaws.com [3.131.60.8] 41120 (?) open
+    You're on your way to becoming the net cat master
+    picoCTF{nEtCat_Mast3ry_3214be47}
+
+Horray! the flag is found! But it can also be achieve without knowing the IP Address
+
+    $ nc -v jupiter.challenges.picoctf.org 41120
+    DNS fwd/rev mismatch: jupiter.challenges.picoctf.org != ec2-3-131-60-8.us-east-2.compute.amazonaws.com
+    jupiter.challenges.picoctf.org [3.131.60.8] 41120 (?) open
+    You're on your way to becoming the net cat master
+    picoCTF{nEtCat_Mast3ry_3214be47}
+
+The flag is: picoCTF{nEtCat_Mast3ry_3214be47}
+

@@ -1,0 +1,15 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+Can you find the flag in file without running it?
+
+Hints: strings
+
+1st. The first approach that I did is to use string in Kali with grep 'pico' specifying the word pico.
+    strings strings | grep 'pico'
+    picoCTF{5tRIng5_1T_7f766a23}
+
+The flag is: picoCTF{5tRIng5_1T_7f766a23}

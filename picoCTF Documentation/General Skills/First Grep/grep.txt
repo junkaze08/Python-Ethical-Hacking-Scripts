@@ -1,0 +1,15 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+Can you find the flag in file? This would be really tedious to look through manually, something tells me there is a better way.
+
+Hints: grep tutorial
+
+1st. I approached this manually using grep 'pico' specifying the string
+    $ grep 'pico' file                                 
+    picoCTF{grep_is_good_to_find_things_5af9d829}
+
+The flag is: picoCTF{grep_is_good_to_find_things_5af9d829}

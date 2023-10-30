@@ -1,0 +1,16 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+What is 0x3D (base 16) in decimal (base 10)?
+
+Hints: Submit your answer in our flag format. For example, if your answer was '22', you would submit 'picoCTF{22}' as the flag.
+
+1st. We know that base 16 is hexadecimal and converting it to decimal is easy by using int() function with the base parameter in python.
+    python
+    >>>int(0x3D)
+    61
+
+The flag is: picoCTF{61}

@@ -1,0 +1,17 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+Can you convert the number 42 (base 10) to binary (base 2)?
+
+Hints: Submit your answer in our competition's flag format. For example, if your answer was '11111', you would submit 'picoCTF{11111}' as the flag.
+
+1st. Base 10 is decimal and converting it to Base 2 which is binary is easy by using bin() function in python
+    python
+    >>> bin(42)
+    '0b101010'
+
+2nd. We will extract the proper syntax for the flag
+    The flag is: picoCTF{101010}

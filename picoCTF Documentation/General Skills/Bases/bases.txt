@@ -1,0 +1,25 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+What does this bDNhcm5fdGgzX3IwcDM1 mean? I think it has something to do with bases.
+
+Hints: Submit your answer in our flag format. For example, if your answer was 'hello', you would submit 'picoCTF{hello}' as the flag.
+
+1st. The description is bases so I think it is base 64 and it is. There is two ways to decode this
+    1. Using Cyberchef 
+        Input = bDNhcm5fdGgzX3IwcDM1
+        Output = l3arn_th3_r0p35
+
+    2. Using python
+    #pip install bases
+        >>> import bases
+        >>> from bases import base64
+        >>> b = 'bDNhcm5fdGgzX3IwcDM1'
+        >>> base64.decode(b)
+        b'l3arn_th3_r0p35'
+
+2nd. The flag is found!
+    The flag is: picoCTF{l3arn_th3_r0p35}
