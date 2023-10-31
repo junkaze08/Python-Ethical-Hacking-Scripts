@@ -1,0 +1,60 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+Can you find the flag? shark1.pcapng.
+
+1st. Since it is a pcap file, It can be opened by Wireshark.
+    //There is a total of 987 packets and we will find the HTTP TCP Protocol
+    //One way to hunt this is by finding the [SYN,ACK] means synchronize acknowledge
+    //It works like this: 
+        Client  ->  Server  SYN
+        Client  <-  Server  SYN-ACK
+        Client  ->  Server  ACK
+
+2nd. To filter all the useless packets, click Statistics and under it is Conversations.
+    //There will be Ethernet, IPv4, IPv6, TCP 17 and UDP
+    //Click on IPv4 and notice the Addresses, the first two addresses represents TCP which is not our target
+    //The 3rd to the last IP addresses is what we want since it is Client to Server exchange
+
+    Right click on 3rd IP Address and Apply as Filter, Selected, A <--> B //You notice it is like a SYN-ACK request connection that we are going to filter.
+    So it filters it and also it has a command ip.addr==192.168.38.104 && ip.addr==18.222.37.134
+    It displays the GET HTTP status 200 OK which means SYN-ACK is a success.
+
+    Now we will right click on the Source IP and click Follow then TCP Stream. This is the result.
+    GET / HTTP/1.1
+    Host: 18.222.37.134
+    Connection: keep-alive
+    Cache-Control: max-age=0
+    Upgrade-Insecure-Requests: 1
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+    Accept-Encoding: gzip, deflate
+    Accept-Language: en-US,en;q=0.9
+
+    HTTP/1.1 200 OK
+    Date: Mon, 10 Aug 2020 01:51:45 GMT
+    Server: Apache/2.4.29 (Ubuntu)
+    Last-Modified: Fri, 07 Aug 2020 00:45:02 GMT
+    ETag: "2f-5ac3eea4fcf01"
+    Accept-Ranges: bytes
+    Content-Length: 47
+    Keep-Alive: timeout=5, max=100
+    Connection: Keep-Alive
+    Content-Type: text/html
+
+    Gur synt vf cvpbPGS{c33xno00_1_f33_h_qrnqorrs}
+
+3rd. Success! we managed to see the possible flag but it is encrypted. One way to way what encoder is used is the sequence of the letters.
+    To make things short, it is a ROT13 Cypher. It is a substitution cipher that replaces each letter of the alphabet with the letter 13 positions ahead of it. 
+    For example, the letter A is replaced with N, B with O, and so on. The process is reversible, and the same method is used to decrypt the message.
+
+    Check this out:
+        cvpbPGS{c33xno00_1_f33_h_qrnqorrs}
+        picoCTF{                         }
+
+    You can see that lowercase p is encrypted as lowercase c and vice-versa on upper case. So we will use our handy CyberChef to decode this flag.
+
+    The flag is: picoCTF{p33kab00_1_s33_u_deadbeef}

@@ -1,0 +1,33 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+I've hidden a flag in this file. Can you find it? Forensics is fun.pptm
+
+1st. Upon opening the powerpoint, i noticed it pops an error and mandates to repair it. So I opened it and check the rest of the slides.
+    //The 1st slide has "Forensics is Fun" and as I scrolled down, 37th slide has hidden slide but it has "Not the flag"
+    //I Macro from the title itself, maybe it is there. And the results are:
+        Sub not_flag()
+            Dim not_flag As String
+            not_flag = "sorry_but_this_isn't_it"
+        End Sub
+
+2nd. I drag the powerpoint on the Kali Linux and use a tool file to find out the format. So it seems it is an powerpoint macro pptm.
+    $ file Forensics\ is\ fun.pptm 
+    Forensics is fun.pptm: Microsoft PowerPoint 2007+
+
+    //I searched on google and found out that PPTM files use ZIP and XML to compress and organize the data into a single file. 
+    //The difference between the two is that PPTM files can execute macros, while PPTX files, although they might contain them, can not.
+    //So why not I will use binwalk to dig into the files and there is a lot of it.
+
+    $ binwalk Forensics\ is\ fun.pptm 
+
+    //I've seen this file that doesn't belong to any.
+    88548         0x159E4         Zip archive data, at least v2.0 to extract, compressed size: 81, uncompres9, name: ppt/slideMasters/hidden
+
+3rd. I checked the folder and open the txt file and at first, I think this is random characters but I noticed it is like base64.
+    //When I run it in CyberChef, it really is encoded in base64 and the flag is found!
+
+    The flag is: picoCTF{D1d_u_kn0w_ppts_r_z1p5}

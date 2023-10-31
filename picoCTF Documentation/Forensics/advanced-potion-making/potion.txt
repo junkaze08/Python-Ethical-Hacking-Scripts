@@ -1,0 +1,25 @@
+#Junester Ursora II BSIT 4-A
+
+#University of Cebu - Banilad
+
+#https://play.picoctf.org/users/pythons_junkaze
+
+Ron just found his own copy of advanced potion making, but its been corrupted by some kind of spell. Help him recover it!
+
+1st. My standard approach for this is identifying what file is it and using binwalk.
+    //After knowing that it is a Zlib, i run hexdump and found certain details that's why I use hexdump
+    //I noticed that it has PB IHDR on the top, i searched it on google and highlights it as
+    //"A valid PNG image must contain an IHDR chunk", In my mind, maybe this is an PNG file. So i open another PNG file and it is quite similar
+
+2nd. I changed the hex values the same as the standard PNG file
+    
+    89 50 42 11 0D 0A 1A 0A 00 12 13 14 49 48 44 52 -> advance-motion-making file
+    89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52 -> PNG file
+
+3rd. After changing the hex values, I inputted manually the PNG file extension to advance-motion-making.png
+    //And it appears to be an image, a full red, maybe the flag is inside the image.
+    //I use stegsolve for this.
+        $ java -jar stegsolve.jar\~
+    //After importing the file to the stegsolve app, I found the flag on Red plane 0
+
+The flag is: picoCTF{w1z4rdry}
